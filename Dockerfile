@@ -4,6 +4,13 @@ LABEL maintainer="Vinh VO <voldedore@gmail.com>"
 
 ENV VERSION 0.1.0
 
+RUN apt-get update                                                        && \
+    apt-get install -y --no-install-recommends software-properties-common && \
+    add-apt-repository ppa:team-xbmc/ppa                                  && \
+    apt-get -y purge ca-certificates openssl software-properties-common   && \
+    apt-get -y --purge autoremove                                         && \
+    rm -rf /var/lib/apt/lists/*
+
 RUN packages="                                              \
     kodi-pvr-argustv                                        \
     kodi-pvr-dvblink                                        \
